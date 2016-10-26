@@ -14,8 +14,8 @@ public class StoreController {
 
 	@Autowired
 	private StoreService storeService;
-	
-	@RequestMapping(value="/create", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public void create(@RequestBody Store store) {
 		storeService.create(store);
 	}

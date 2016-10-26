@@ -11,7 +11,7 @@ import com.blaxman.market.rest.service.SignupService;
 
 @Service
 public class SignupServiceImpl implements SignupService {
-	
+
 	@Autowired
 	private CustomerRepo customerRepo;
 

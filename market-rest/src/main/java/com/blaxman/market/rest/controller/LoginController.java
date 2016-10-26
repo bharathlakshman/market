@@ -15,17 +15,19 @@ public class LoginController {
 	@Autowired
 	private SignupService signupService;
 
-	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	private Boolean signup(@RequestBody Customer customer) {
 		signupService.create(customer);
 		return true;
 	}
 
-  /*private void signin() {
-
-	}
-
-	private void signout() {
-
-	}*/
+	/*
+	 * private void signin() {
+	 * 
+	 * }
+	 * 
+	 * private void signout() {
+	 * 
+	 * }
+	 */
 }

@@ -56,7 +56,7 @@ public class Customer extends BaseEntity {
 
 	@NotNull
 	private String mobile;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Media picture;
 
@@ -69,7 +69,7 @@ public class Customer extends BaseEntity {
 	@JsonIgnore
 	@Column(columnDefinition = "geography(Point,4326)")
 	private Point geography;
-	
+
 	@Singular
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
 	private Collection<PurchaseOrder> orders = new ArrayList<>();

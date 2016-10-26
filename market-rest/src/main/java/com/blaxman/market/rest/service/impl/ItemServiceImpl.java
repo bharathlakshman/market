@@ -12,11 +12,11 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private ItemRepo itemRepo;
-	
+
 	@Override
 	public void create(Item item) {
 		checkNotNull(item);
 		itemRepo.save(item);
 	}
-	
+
 }

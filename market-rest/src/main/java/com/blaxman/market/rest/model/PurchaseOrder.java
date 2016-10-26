@@ -17,7 +17,7 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true, exclude = { "customer" })
 public class PurchaseOrder extends BaseEntity {
 
