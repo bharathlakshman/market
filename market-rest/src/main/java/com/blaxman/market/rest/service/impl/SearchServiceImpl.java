@@ -7,4 +7,9 @@ import com.blaxman.market.rest.service.SearchService;
 @Service
 public class SearchServiceImpl implements SearchService {
 
+	@Override
+	public void search(String query) {
+
+	}
+
 }
