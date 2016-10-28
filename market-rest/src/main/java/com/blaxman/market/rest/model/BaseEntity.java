@@ -2,6 +2,7 @@ package com.blaxman.market.rest.model;
 
 import java.util.Date;
 
+import javax.annotation.Nonnull;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,7 +10,6 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,10 +23,10 @@ public abstract class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotNull
+	@Nonnull
 	private Date createdOn;
 
-	@NotNull
+	@Nonnull
 	private Date modifiedOn;
 
 	@Transient

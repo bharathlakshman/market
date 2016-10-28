@@ -1,9 +1,9 @@
 package com.blaxman.market.rest.model;
 
+import javax.annotation.Nonnull;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 public class Media extends BaseEntity {
 
-	@NotNull
+	@Nonnull
 	private String key;
 
-	@NotNull
+	@Nonnull
 	@Enumerated(EnumType.STRING)
 	private Type type;
 

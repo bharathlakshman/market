@@ -3,10 +3,10 @@ package com.blaxman.market.rest.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.Nonnull;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +27,7 @@ public class Item extends BaseEntity {
 	private String description;
 	private float cost;
 
-	@NotNull
+	@Nonnull
 	@OneToMany(cascade = CascadeType.ALL)
 	@Singular("media")
 	private Collection<Media> media = new ArrayList<>();

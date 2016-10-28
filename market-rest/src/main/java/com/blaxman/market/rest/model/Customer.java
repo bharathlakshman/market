@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.Nonnull;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -28,6 +28,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Singular;
 import lombok.ToString;
 
@@ -41,29 +42,29 @@ import lombok.ToString;
 @NamedQuery(name = "Customer.filterByRadius", query = "select c from Customer c where dwithin(c.geography, ?1, ?2) = true")
 public class Customer extends BaseEntity {
 
-	@NotNull
+	@Nonnull
 	private String firstName;
 
-	@NotNull
+	@Nonnull
 	private String lastName;
 
-	@NotNull
+	@Nonnull
 	@Email
 	private String email;
 
-	@NotNull
+	@NonNull
 	private String address;
 
-	@NotNull
+	@NonNull
 	private String mobile;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Media picture;
 
-	@NotNull
+	@NonNull
 	private Double lat;
 
-	@NotNull
+	@NonNull
 	private Double lon;
 
 	@JsonIgnore

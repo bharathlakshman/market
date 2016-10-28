@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.blaxman.market.rest.model.PurchaseOrder;
 import com.blaxman.market.rest.model.repo.PurchaseOrderRepo;
 import com.blaxman.market.rest.service.OrderService;
+import com.blaxman.market.rest.service.message.Response;
 
 @Service
 public abstract class OrderServiceImpl implements OrderService {
@@ -16,9 +17,10 @@ public abstract class OrderServiceImpl implements OrderService {
 	private PurchaseOrderRepo purchaseOrderRepo;
 
 	@Override
-	public void place(PurchaseOrder purchaseOrder) {
+	public Response<PurchaseOrder> order(PurchaseOrder purchaseOrder) {
 		checkNotNull(purchaseOrder);
-		purchaseOrderRepo.save(purchaseOrder);
+		PurchaseOrder savedPurcehaseOrder = purchaseOrderRepo.save(purchaseOrder);
+		return new Response<PurchaseOrder>(true, savedPurcehaseOrder);
 	}
 
 }

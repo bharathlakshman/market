@@ -1,9 +1,9 @@
 package com.blaxman.market.rest.model;
 
+import javax.annotation.Nonnull;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,13 +21,13 @@ import lombok.ToString;
 @ToString(callSuper = true, exclude = { "customer" })
 public class PurchaseOrder extends BaseEntity {
 
-	@NotNull
-	private double cost;
+	@Nonnull
+	private Double cost;
 
-	@NotNull
+	@Nonnull
 	private String deliveryStatus;
 
-	@NotNull
+	@Nonnull
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;

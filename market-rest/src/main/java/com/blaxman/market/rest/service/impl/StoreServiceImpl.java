@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blaxman.market.rest.model.Store;
 import com.blaxman.market.rest.model.repo.StoreRepo;
 import com.blaxman.market.rest.service.StoreService;
+import com.blaxman.market.rest.service.message.Response;
 
 public class StoreServiceImpl implements StoreService {
 
@@ -14,9 +15,10 @@ public class StoreServiceImpl implements StoreService {
 	private StoreRepo storeRepo;
 
 	@Override
-	public void create(Store store) {
+	public Response<Store> create(Store store) {
 		checkNotNull(store);
 		storeRepo.save(store);
+		return Response.<Store>builder().isSuccessful(true).response(store).build();
 	}
 
 }
