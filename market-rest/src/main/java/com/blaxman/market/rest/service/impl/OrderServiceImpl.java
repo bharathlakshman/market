@@ -20,7 +20,7 @@ public abstract class OrderServiceImpl implements OrderService {
 	public Response<PurchaseOrder> order(PurchaseOrder purchaseOrder) {
 		checkNotNull(purchaseOrder);
 		PurchaseOrder savedPurcehaseOrder = purchaseOrderRepo.save(purchaseOrder);
-		return new Response<PurchaseOrder>(true, savedPurcehaseOrder);
+		return new Response<>(savedPurcehaseOrder);
 	}
 
 }

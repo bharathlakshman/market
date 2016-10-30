@@ -7,19 +7,20 @@ import javax.annotation.Nonnull;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Singular;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Item extends BaseEntity {
 
@@ -28,6 +29,7 @@ public class Item extends BaseEntity {
 	private float cost;
 
 	@Nonnull
+	@NotNull
 	@OneToMany(cascade = CascadeType.ALL)
 	@Singular("media")
 	private Collection<Media> media = new ArrayList<>();

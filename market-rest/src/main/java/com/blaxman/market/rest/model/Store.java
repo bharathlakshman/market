@@ -3,6 +3,7 @@ package com.blaxman.market.rest.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.annotation.Nonnull;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -22,14 +23,16 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, exclude={ "customer" })
 @ToString(callSuper = true, exclude = { "customer" })
 public class Store extends BaseEntity {
 
 	@NotNull
+	@Nonnull
 	private String name;
 
 	@NotNull
+	@Nonnull
 	private String description;
 
 	@OneToMany(cascade = CascadeType.ALL)
@@ -41,6 +44,7 @@ public class Store extends BaseEntity {
 	private Collection<Item> items = new ArrayList<>();
 
 	@NotNull
+	@Nonnull
 	@ManyToOne
 	private Customer customer;
 }

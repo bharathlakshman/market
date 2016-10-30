@@ -19,6 +19,6 @@ public class SignupServiceImpl implements SignupService {
 	@Override
 	public Response<Customer> create(@Nonnull Customer customer) {
 		customerRepo.save(customer);
-		return Response.<Customer>builder().isSuccessful(true).response(customer).build();
+		return new Response<>(customer);
 	}
 }

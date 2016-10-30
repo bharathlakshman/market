@@ -1,22 +1,44 @@
 package com.blaxman.market.rest.service.message;
 
+import java.util.Optional;
+
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.Immutable;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 
-@Data
-@Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
+@Getter
+@Immutable
 public class Response<T> {
+	@Nonnull
+	private boolean isSuccessful;
+	private Optional<T> response;
+	private Optional<Throwable> throwable;
+	private Optional<String> responseDescription;
+	
+	public Response(boolean isSuccessful) {
+		this.isSuccessful = isSuccessful;
+	}
 
-	@Nonnull
-	final private boolean isSuccessful;
-	@Nonnull
-	final private T response;
-	private Throwable throwable;
-	private String responseDescription;
+	public Response(T response) {
+		this.isSuccessful = true;
+		this.response = Optional.ofNullable(response);
+	}
+	
+	public Response(Throwable throwable) {
+		this.isSuccessful = false;
+		this.throwable = Optional.ofNullable(throwable);
+	}
+	
+	public Response(boolean isSuccessful, String responseDescription) {
+		this.isSuccessful = isSuccessful;
+		this.responseDescription = Optional.ofNullable(responseDescription);
+	}
+	
+	public Response(boolean isSuccessful, T response, Throwable throwable, String responseDescription) {
+		this.isSuccessful = isSuccessful;
+		this.response = Optional.ofNullable(response);
+		this.throwable = Optional.ofNullable(throwable);
+		this.responseDescription = Optional.ofNullable(responseDescription);
+	}
 }

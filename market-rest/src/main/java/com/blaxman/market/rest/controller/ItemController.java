@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.blaxman.market.rest.model.Item;
 import com.blaxman.market.rest.service.ItemService;
 
-@RestController("/item")
+@RestController
+@RequestMapping("/item")
 public class ItemController {
 
 	@Autowired

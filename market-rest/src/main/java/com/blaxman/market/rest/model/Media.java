@@ -4,25 +4,28 @@ import javax.annotation.Nonnull;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @Builder
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Media extends BaseEntity {
 
 	@Nonnull
+	@NotNull
 	private String key;
 
 	@Nonnull
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Type type;
 

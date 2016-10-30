@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -29,6 +30,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Singular;
 import lombok.ToString;
 
@@ -37,34 +39,42 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, exclude={ "stores", "orders" })
+@RequiredArgsConstructor
 @ToString(callSuper = true, exclude = { "stores", "orders" })
 @NamedQuery(name = "Customer.filterByRadius", query = "select c from Customer c where dwithin(c.geography, ?1, ?2) = true")
 public class Customer extends BaseEntity {
 
 	@Nonnull
+	@NotNull
 	private String firstName;
 
 	@Nonnull
+	@NotNull
 	private String lastName;
 
 	@Nonnull
 	@Email
+	@NotNull
 	private String email;
 
 	@NonNull
+	@NotNull
 	private String address;
 
 	@NonNull
+	@NotNull
 	private String mobile;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Media picture;
 
 	@NonNull
+	@NotNull
 	private Double lat;
 
 	@NonNull
+	@NotNull
 	private Double lon;
 
 	@JsonIgnore
@@ -86,5 +96,9 @@ public class Customer extends BaseEntity {
 		checkNotNull(lon);
 		GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(), 4326);
 		geography = geometryFactory.createPoint(new Coordinate(lon, lat));
+		/** Set stores and orders */{
+			stores.parallelStream().forEach(store -> store.setCustomer(this));
+			orders.parallelStream().forEach(order -> order.setCustomer(this));
+		}
 	}
 }
